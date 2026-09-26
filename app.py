@@ -19,7 +19,6 @@ st.write("Aplikasi interaktif untuk memprediksi kelompok pelanggan berdasarkan m
 st.info(
     "💡 **Informasi Format Mata Uang:**\n\n"
     "Data pada model ini menggunakan standar mata uang **Dolar AS (USD)** sesuai dataset asli (*Marketing Campaign*). "
-    "Input menggunakan angka bulat (tanpa desimal `,00`) dengan tampilan pemisah ribuan standar internasional (contoh: **\\$50,000**)."
 )
 
 # Deskripsi cluster
