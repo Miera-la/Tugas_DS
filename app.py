@@ -15,8 +15,6 @@ scaler, model_kmeans = load_artefak()
 st.title("🎯 Prediksi Segmen Pelanggan")
 st.write("Aplikasi interaktif untuk memprediksi kelompok pelanggan berdasarkan model K-Means Clustering.")
 
-st.markdown("---")
-
 # Deskripsi cluster
 cluster_descriptions = {
     0: {
@@ -43,7 +41,6 @@ with col1:
 with col2:
     num_deals = st.number_input("NumDealsPurchases (Pembelian via Diskon)", value=2.0, step=1.0)
 
-st.markdown("---")
 
 # 3. LOGIKA PREDIKSI
 if st.button("Prediksi Cluster"):
