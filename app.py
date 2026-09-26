@@ -12,7 +12,7 @@ def load_artefak():
 scaler, model_kmeans = load_artefak()
 
 # 2. UI STREAMLIT
-st.title("🎯 Prediksi Segmen Pelanggan")
+st.title("Prediksi Segmen Pelanggan")
 st.write("Aplikasi interaktif untuk memprediksi kelompok pelanggan berdasarkan model K-Means Clustering.")
 
 # Keterangan format mata uang (Gunakan \\$ agar tidak dianggap formula matematika LaTeX/KaTeX oleh Streamlit)
