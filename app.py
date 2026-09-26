@@ -22,8 +22,6 @@ st.info(
     "Input menggunakan angka bulat (tanpa desimal `,00`) dengan tampilan pemisah ribuan standar internasional (contoh: **$50,000**)."
 )
 
-st.markdown("---")
-
 # Deskripsi cluster
 cluster_descriptions = {
     0: {
@@ -52,7 +50,7 @@ with col1:
         step=1000,
         format="%d"
     )
-    st.caption(f"💵 Nominal: **${income:,} USD**")
+    st.caption(f"Nominal: **${income:,} USD**")
 
     mnt_wines = st.number_input(
         "MntWines (Pengeluaran Wine - USD / $)",
@@ -62,7 +60,7 @@ with col1:
         step=10,
         format="%d"
     )
-    st.caption(f"🍷 Nominal: **${mnt_wines:,} USD**")
+    st.caption(f"Nominal: **${mnt_wines:,} USD**")
 
 with col2:
     num_deals = st.number_input(
@@ -73,9 +71,7 @@ with col2:
         step=1,
         format="%d"
     )
-    st.caption(f"🏷️ Frekuensi: **{num_deals} kali transaksi**")
-
-st.markdown("---")
+    st.caption(f"Frekuensi: **{num_deals} kali transaksi**")
 
 # 3. LOGIKA PREDIKSI
 if st.button("Prediksi Cluster"):
