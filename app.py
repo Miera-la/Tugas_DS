@@ -15,6 +15,15 @@ scaler, model_kmeans = load_artefak()
 st.title("🎯 Prediksi Segmen Pelanggan")
 st.write("Aplikasi interaktif untuk memprediksi kelompok pelanggan berdasarkan model K-Means Clustering.")
 
+# Keterangan format mata uang
+st.info(
+    "💡 **Informasi Format Mata Uang:**\n\n"
+    "Data pada model ini menggunakan standar mata uang **Dolar AS (USD / $)** sesuai dataset asli (*Marketing Campaign*). "
+    "Input menggunakan angka bulat (tanpa desimal `,00`) dengan tampilan pemisah ribuan standar internasional (contoh: **$50,000**)."
+)
+
+st.markdown("---")
+
 # Deskripsi cluster
 cluster_descriptions = {
     0: {
@@ -31,16 +40,42 @@ cluster_descriptions = {
     }
 }
 
-# Input widgets dengan layout 2 kolom
+# Input widgets dengan format integer murni (tanpa ,00) dan live preview format USD
 col1, col2 = st.columns(2)
 
 with col1:
-    income = st.number_input("Income (Pendapatan Tahunan)", value=50000.0, step=1000.0)
-    mnt_wines = st.number_input("MntWines (Pengeluaran Wine)", value=300.0, step=10.0)
+    income = st.number_input(
+        "Income (Pendapatan Tahunan - USD / $)",
+        min_value=0,
+        max_value=200000,
+        value=50000,
+        step=1000,
+        format="%d"
+    )
+    st.caption(f"💵 Nominal: **${income:,} USD**")
+
+    mnt_wines = st.number_input(
+        "MntWines (Pengeluaran Wine - USD / $)",
+        min_value=0,
+        max_value=5000,
+        value=300,
+        step=10,
+        format="%d"
+    )
+    st.caption(f"🍷 Nominal: **${mnt_wines:,} USD**")
 
 with col2:
-    num_deals = st.number_input("NumDealsPurchases (Pembelian via Diskon)", value=2.0, step=1.0)
+    num_deals = st.number_input(
+        "NumDealsPurchases (Jumlah Pembelian via Diskon)",
+        min_value=0,
+        max_value=50,
+        value=2,
+        step=1,
+        format="%d"
+    )
+    st.caption(f"🏷️ Frekuensi: **{num_deals} kali transaksi**")
 
+st.markdown("---")
 
 # 3. LOGIKA PREDIKSI
 if st.button("Prediksi Cluster"):
@@ -58,5 +93,11 @@ if st.button("Prediksi Cluster"):
     })
     
     st.success(f"Pelanggan ini masuk ke dalam: **{cluster_info['label']}**")
-    st.info(f"**Deskripsi:** {cluster_info['desc']}")
+    st.info(f"**Deskripsi Karakteristik:** {cluster_info['desc']}")
+    st.write(
+        f"📊 **Ringkasan Input:** "
+        f"Pendapatan: **${income:,} USD** | "
+        f"Belanja Wine: **${mnt_wines:,} USD** | "
+        f"Pembelian Diskon: **{num_deals} kali**"
+    )
     st.metric(label="Status Prediksi", value="Berhasil", delta=f"Cluster {cluster_result}")
