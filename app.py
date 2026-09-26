@@ -15,11 +15,11 @@ scaler, model_kmeans = load_artefak()
 st.title("🎯 Prediksi Segmen Pelanggan")
 st.write("Aplikasi interaktif untuk memprediksi kelompok pelanggan berdasarkan model K-Means Clustering.")
 
-# Keterangan format mata uang
+# Keterangan format mata uang (Gunakan \\$ agar tidak dianggap formula matematika LaTeX/KaTeX oleh Streamlit)
 st.info(
     "💡 **Informasi Format Mata Uang:**\n\n"
-    "Data pada model ini menggunakan standar mata uang **Dolar AS (USD / $)** sesuai dataset asli (*Marketing Campaign*). "
-    "Input menggunakan angka bulat (tanpa desimal `,00`) dengan tampilan pemisah ribuan standar internasional (contoh: **$50,000**)."
+    "Data pada model ini menggunakan standar mata uang **Dolar AS (USD)** sesuai dataset asli (*Marketing Campaign*). "
+    "Input menggunakan angka bulat (tanpa desimal `,00`) dengan tampilan pemisah ribuan standar internasional (contoh: **\\$50,000**)."
 )
 
 # Deskripsi cluster
@@ -43,24 +43,24 @@ col1, col2 = st.columns(2)
 
 with col1:
     income = st.number_input(
-        "Income (Pendapatan Tahunan - USD / $)",
+        "Income (Pendapatan Tahunan dalam USD)",
         min_value=0,
         max_value=200000,
         value=50000,
         step=1000,
         format="%d"
     )
-    st.caption(f"Nominal: **${income:,} USD**")
+    st.caption(f"💵 Nominal: **\\${income:,} USD**")
 
     mnt_wines = st.number_input(
-        "MntWines (Pengeluaran Wine - USD / $)",
+        "MntWines (Pengeluaran Wine dalam USD)",
         min_value=0,
         max_value=5000,
         value=300,
         step=10,
         format="%d"
     )
-    st.caption(f"Nominal: **${mnt_wines:,} USD**")
+    st.caption(f"🍷 Nominal: **\\${mnt_wines:,} USD**")
 
 with col2:
     num_deals = st.number_input(
@@ -71,7 +71,7 @@ with col2:
         step=1,
         format="%d"
     )
-    st.caption(f"Frekuensi: **{num_deals} kali transaksi**")
+    st.caption(f"🏷️ Frekuensi: **{num_deals} kali transaksi**")
 
 # 3. LOGIKA PREDIKSI
 if st.button("Prediksi Cluster"):
@@ -92,8 +92,8 @@ if st.button("Prediksi Cluster"):
     st.info(f"**Deskripsi Karakteristik:** {cluster_info['desc']}")
     st.write(
         f"📊 **Ringkasan Input:** "
-        f"Pendapatan: **${income:,} USD** | "
-        f"Belanja Wine: **${mnt_wines:,} USD** | "
+        f"Pendapatan: **\\${income:,} USD** | "
+        f"Belanja Wine: **\\${mnt_wines:,} USD** | "
         f"Pembelian Diskon: **{num_deals} kali**"
     )
     st.metric(label="Status Prediksi", value="Berhasil", delta=f"Cluster {cluster_result}")
